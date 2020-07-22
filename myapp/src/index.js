@@ -5,10 +5,24 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "./components/Welcome";
 import Welcome from "./components/Welcome";
+import "./components/Greet";
+import Greet from "./components/Greet";
+import "./components/Message";
+import Message from "./components/Message";
+import "./components/Counter";
+import Counter from "./components/Counter";
+import "./components/FunctionClick";
+import FunctionClick from "./components/FunctionClick";
+import "./components/EventBind";
+import EventBind from "./components/EventBind";
+import "./components/ParentComponent";
+import ParentComponent from "./components/ParentComponent";
+import "./components/ListRendering";
+import ListRendering from "./components/ListRendering";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Welcome />
+    <ListRendering />
   </React.StrictMode>,
   document.getElementById("root")
 );
