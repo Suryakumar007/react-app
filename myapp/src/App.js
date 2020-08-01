@@ -1,28 +1,71 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
-import "./components/Welcome.js";
+import "./components/TodoItem";
+import TodoItem from "./components/TodoItem";
+import tasks from "./components/todojson";
+import Demo from "./Demo";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>Hello world!!</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React from Codevolution
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      todos: tasks,
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(id) {
+    console.log("value changed" + id);
+    console.log(id);
+
+    this.setState((prevState) => {
+      const updatedTodos = prevState.todos.map((todo) => {
+        if (todo.id === id) {
+          todo.completed = !todo.completed;
+        }
+        return todo;
+      });
+
+      return {
+        todos: updatedTodos,
+      };
+    });
+  }
+
+  render() {
+    const tasksdata = this.state.todos.map((item) => (
+      <TodoItem key={item.id} todo={item} handleChange={this.handleChange} />
+    ));
+
+    return <div className="todo-list">{tasksdata}</div>;
+  }
 }
+
+/*function logMessage() {
+  console.log("Mouse Entered");
+}
+
+class App extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      isLoading: true,
+    };
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({ isLoading: false });
+    }, 1500);
+  }
+  render() {
+    return (
+      <div>
+        <Demo text={this.state.isLoading} />
+      </div>
+    );
+  }
+}*/
 
 export default App;
